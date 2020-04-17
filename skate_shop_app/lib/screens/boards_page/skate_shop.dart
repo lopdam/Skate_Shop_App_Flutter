@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:palette_generator/palette_generator.dart';
-import 'package:skate_shop_app/models/board_item.dart';
+import 'package:skate_shop_app/screens/boards_page/board_item.dart';
 import 'package:skate_shop_app/models/skate_board.dart';
 
 class SkateShop extends StatefulWidget {
@@ -51,6 +51,7 @@ class _SkateShop extends State<SkateShop> with SingleTickerProviderStateMixin {
     "board17.png",
     "board18.png",
   ];
+
   //----------------------------------------------!>
 
   @override
@@ -117,16 +118,31 @@ class _SkateShop extends State<SkateShop> with SingleTickerProviderStateMixin {
     return list;
   }
 
+  Widget _appBard() {
+    return AppBar(
+      leading: IconButton(
+          icon: Icon(Icons.arrow_back,color: Colors.deepPurple,),
+          color: Colors.deepPurple,
+          onPressed: (){
+            Navigator.of(context).pop();
+          }),
+      backgroundColor: Colors.white,
+      elevation: 7.0,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (data == null) {
       return Scaffold(
+        //appBar: _appBard(),
         body: Center(
           child: CircularProgressIndicator(),
         ),
       );
     }
     return Scaffold(
+      //appBar: _appBard(),
       backgroundColor: backgroundColor,
       body: NotificationListener(
         onNotification: (notification) {
