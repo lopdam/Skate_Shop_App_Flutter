@@ -1,31 +1,31 @@
 // Sakate Page Screen
 
 import 'package:flutter/material.dart';
-import 'package:skate_shop_app/models/board_item.dart';
+import 'package:skate_shop_app/models/skate_board.dart';
 import 'package:skate_shop_app/util/util.dart';
 
 class SkatePage extends StatefulWidget {
-  SkateItemWidget _boardItem;
+  SkateBoard _skateBoard;
 
-  SkatePage(this._boardItem) : super();
+  SkatePage(this._skateBoard) : super();
 
   @override
   _SkatePage createState() {
-    return _SkatePage(_boardItem);
+    return _SkatePage(_skateBoard);
   }
 }
 
 class _SkatePage extends State<SkatePage> {
-  SkateItemWidget _boardItem;
+  SkateBoard _skateBoard;
 
-  _SkatePage(this._boardItem) : super();
+  _SkatePage(this._skateBoard) : super();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
         body: CustomPaint(
-          painter: _BluePainter(_boardItem.colors.color),
+          painter: _BluePainter(_skateBoard.colors.color),
           child: SafeArea(
             bottom: false,
             child: Column(
@@ -49,7 +49,7 @@ class _SkatePage extends State<SkatePage> {
           },
           child: Icon(
             Icons.arrow_back,
-            color: _boardItem.colors.bodyTextColor,
+            color: _skateBoard.colors.bodyTextColor,
             size: 32.0,
           ),
         ),
@@ -61,7 +61,7 @@ class _SkatePage extends State<SkatePage> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Text(
-                _boardItem.title,
+                _skateBoard.title,
                 style: Theme.of(context).textTheme.title.copyWith(
                       fontWeight: FontWeight.bold,
                       fontSize: 26.0,
@@ -95,7 +95,7 @@ class _SkatePage extends State<SkatePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            "Retos tradicionales y además tiene unas animaciones muy interesantes",
+            _skateBoard.description,
             style: Theme.of(context).textTheme.title.copyWith(fontSize: 22.0),
           ),
           Expanded(
@@ -114,7 +114,7 @@ class _SkatePage extends State<SkatePage> {
                 ),
           ),
           Text(
-            "8\" x 32\"",
+            _skateBoard.size,
             style: Theme.of(context).textTheme.title.copyWith(fontSize: 22.0),
           ),
           Expanded(
@@ -129,7 +129,7 @@ class _SkatePage extends State<SkatePage> {
                 ),
           ),
           Text(
-            "Canadian Maple",
+            _skateBoard.material,
             style: Theme.of(context).textTheme.title.copyWith(fontSize: 22.0),
           ),
           Expanded(
@@ -153,7 +153,7 @@ class _SkatePage extends State<SkatePage> {
         child: Padding(
           padding: const EdgeInsets.only(left: 16.0),
           child: Text(
-            _boardItem.price,
+            "\$ " + _skateBoard.price.toString(),
             style: Theme.of(context).textTheme.headline.copyWith(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 10,
@@ -171,7 +171,7 @@ class _SkatePage extends State<SkatePage> {
       decoration: BoxDecoration(
           image: DecorationImage(
         image: ExactAssetImage(
-          _boardItem.generalPathImg + _boardItem.imagePath,
+          SkateBoard.generalPathImg + _skateBoard.imagePath,
         ),
         fit: BoxFit.contain,
       )),
@@ -194,7 +194,8 @@ class _SkatePage extends State<SkatePage> {
                 color: Colors.white, fontSize: 20.0, letterSpacing: 10),
           ),
           onPressed: () {
-Util.shortToast(context: context,mensaje: _boardItem.title+ " add to Cart");
+            Util.shortToast(
+                context: context, mensaje: _skateBoard.title + " add to Cart");
           },
         ));
   }

@@ -23,6 +23,36 @@ class _SkateShop extends State<SkateShop> with SingleTickerProviderStateMixin {
 
   AnimationController _animationController;
 
+  //<!-----------------//Data Test
+
+  String _title = "MONSTER BOARD";
+  String _descr =
+      "Retos tradicionales y además tiene unas animaciones muy interesantes";
+  String _size = "8\" x 32\"";
+  int _price = 240;
+  String _material = "Canadian Maple";
+  var _images = [
+    "board1.png",
+    "board2.png",
+    "board3.png",
+    "board4.png",
+    "board5.png",
+    "board6.png",
+    "board7.png",
+    "board8.png",
+    "board9.png",
+    "board10.png",
+    "board11.png",
+    "board12.png",
+    "board13.png",
+    "board14.png",
+    "board15.png",
+    "board16.png",
+    "board17.png",
+    "board18.png",
+  ];
+  //----------------------------------------------!>
+
   @override
   void initState() {
     super.initState();
@@ -69,32 +99,19 @@ class _SkateShop extends State<SkateShop> with SingleTickerProviderStateMixin {
   }
 
   Future<List<SkateBoard>> _initializeColors() async {
-    var images = [
-      "board1.png",
-      "board2.png",
-      "board3.png",
-      "board4.png",
-      "board5.png",
-      "board6.png",
-      "board7.png",
-      "board8.png",
-      "board9.png",
-      "board10.png",
-      "board11.png",
-      "board12.png",
-      "board13.png",
-      "board14.png",
-      "board15.png",
-      "board16.png",
-      "board17.png",
-      "board18.png",
-    ];
     List<SkateBoard> list = [];
-    for (String image in images) {
-      String imgPath = "assets/images/" + image;
+    for (String imgPath in _images) {
+      String imgPathFinal = "assets/images/" + imgPath;
       PaletteGenerator colors =
-          await PaletteGenerator.fromImageProvider(AssetImage(imgPath));
-      list.add(SkateBoard(image, colors.dominantColor));
+          await PaletteGenerator.fromImageProvider(AssetImage(imgPathFinal));
+      list.add(SkateBoard(
+          title: _title,
+          description: _descr,
+          size: _size,
+          material: _material,
+          price: _price,
+          imagePath: imgPath,
+          colors: colors.dominantColor));
     }
 
     return list;
@@ -126,10 +143,7 @@ class _SkateShop extends State<SkateShop> with SingleTickerProviderStateMixin {
             for (SkateBoard board in data)
               SkateItemWidget(
                 rotation: rotation,
-                title: "SLIME MONSTER",
-                imagePath: board.imagePath,
-                price: "\$ 240",
-                colors: board.colors,
+                skateBoard: board,
               ),
           ],
         ),
