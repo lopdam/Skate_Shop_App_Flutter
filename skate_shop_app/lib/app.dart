@@ -7,7 +7,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Skate Shop",
+      title: "Retro Skate",
       theme: ThemeData(primarySwatch:Colors.deepPurple),
       home: Home(),
     );
