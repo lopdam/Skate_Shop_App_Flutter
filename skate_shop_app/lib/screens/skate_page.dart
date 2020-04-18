@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:skate_shop_app/models/skate_board.dart';
 import 'package:skate_shop_app/util/util.dart';
+import 'package:flutter/services.dart';
 
 class SkatePage extends StatefulWidget {
   SkateBoard _skateBoard;
@@ -19,6 +20,30 @@ class _SkatePage extends State<SkatePage> {
   SkateBoard _skateBoard;
 
   _SkatePage(this._skateBoard) : super();
+
+
+  @override
+  void initState() {
+    super.initState();
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp
+    ]);
+
+  }
+
+
+  @override
+  void dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp
+    ]);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
