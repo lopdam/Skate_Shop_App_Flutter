@@ -1,9 +1,9 @@
 //HomeScreen App
 
 import 'package:flutter/material.dart';
+import 'package:skate_shop_app/screens/boards_list/skate_shop_list.dart';
 import 'package:skate_shop_app/screens/home/home_body.dart';
 import 'package:skate_shop_app/screens/home/home_drawer.dart';
-import 'package:skate_shop_app/screens/boards_page/skate_shop.dart';
 import 'package:skate_shop_app/values/strings.dart';
 
 class Home extends StatefulWidget {
@@ -30,7 +30,7 @@ class _Home extends State<Home> {
             icon: Icon(Icons.search),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => SkateShop()));
+                  builder: (BuildContext context) => SkateShopList()));
             }),
       ],
       title: Text(Strings.titleHome),
@@ -42,6 +42,6 @@ class _Home extends State<Home> {
 
   void _openBoardsShop(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
-        builder: (BuildContext context) => SkateShop()));
+        builder: (BuildContext context) => SkateShopList()));
   }
 }

@@ -2,18 +2,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:palette_generator/palette_generator.dart';
-import 'package:skate_shop_app/screens/boards_page/board_item.dart';
+import 'package:skate_shop_app/screens/boards_list/board_item.dart';
 import 'package:skate_shop_app/models/skate_board.dart';
+import 'package:skate_shop_app/values/app_colors.dart';
 
-class SkateShop extends StatefulWidget {
+class SkateShopList extends StatefulWidget {
   @override
-  _SkateShop createState() {
-    // TODO: implement createState
-    return _SkateShop();
+  _SkateShopList createState() {
+    return _SkateShopList();
   }
 }
 
-class _SkateShop extends State<SkateShop> with SingleTickerProviderStateMixin {
+class _SkateShopList extends State<SkateShopList> with SingleTickerProviderStateMixin {
   List<SkateBoard> data = null;
   ScrollController _scrollController;
   double rotation = 0;
@@ -121,13 +121,26 @@ class _SkateShop extends State<SkateShop> with SingleTickerProviderStateMixin {
   Widget _appBard() {
     return AppBar(
       leading: IconButton(
-          icon: Icon(Icons.arrow_back,color: Colors.deepPurple,),
-          color: Colors.deepPurple,
-          onPressed: (){
+          icon: Icon(
+            Icons.arrow_back,
+            color: AppColors.primaryColor,
+          ),
+          onPressed: () {
             Navigator.of(context).pop();
           }),
       backgroundColor: Colors.white,
       elevation: 7.0,
+    );
+  }
+
+  Widget _floatingActionBtn() {
+    return FloatingActionButton(
+      elevation: 7,
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+      backgroundColor: Colors.white,
+      child: Icon(Icons.close,color: AppColors.primaryColor,size: 28,),
     );
   }
 
@@ -136,6 +149,8 @@ class _SkateShop extends State<SkateShop> with SingleTickerProviderStateMixin {
     if (data == null) {
       return Scaffold(
         //appBar: _appBard(),
+
+        floatingActionButton: _floatingActionBtn(),
         body: Center(
           child: CircularProgressIndicator(),
         ),
@@ -143,6 +158,7 @@ class _SkateShop extends State<SkateShop> with SingleTickerProviderStateMixin {
     }
     return Scaffold(
       //appBar: _appBard(),
+      floatingActionButton: _floatingActionBtn(),
       backgroundColor: backgroundColor,
       body: NotificationListener(
         onNotification: (notification) {
